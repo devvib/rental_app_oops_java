@@ -107,6 +107,47 @@ class CarRentalSystem {
         }
     }
 
+
+    public void addNewCar() {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter Car ID: ");
+        String carId = scanner.nextLine();
+        
+        System.out.print("Enter Brand: ");
+        String brand = scanner.nextLine();
+        
+        System.out.print("Enter Model: ");
+        String model = scanner.nextLine();
+        
+        System.out.print("Enter Base Price per Day: ");
+        double basePricePerDay = scanner.nextDouble();
+        scanner.nextLine(); // Consume newline
+        
+        Car newCar = new Car(carId, brand, model, basePricePerDay);
+        addCar(newCar);
+        
+        System.out.println("New car added successfully!");
+    }
+
+    public void showAllCars() {
+        System.out.println("\n== All Cars ==\n");
+        if (cars.isEmpty()) {
+            System.out.println("No cars available.");
+            return;
+        }
+
+        for (Car car : cars) {
+            System.out.println("Car ID: " + car.getCarId() +
+                               ", Brand: " + car.getBrand() +
+                               ", Model: " + car.getModel() +
+                               ", Price per Day: $" + car.calculatePrice(1) + 
+                               ", Available: " + (car.isAvailable() ? "Yes" : "No"));
+        }
+    }
+
+
+
     
 
 
@@ -119,8 +160,10 @@ class CarRentalSystem {
                 System.out.println("2. Return a Car");
                 System.out.println("3. Update Customer Name");
                 System.out.println("4. View Rental History");
-                System.out.println("5. View All Rentals"); // New option for admin
-                System.out.println("6. Exit");
+                System.out.println("5. View All Rentals");
+                System.out.println("6. Add New Car");
+                System.out.println("7. Show All Cars"); // New option for showing all cars
+                System.out.println("8. Exit");
                 System.out.print("Enter your choice: ");
 
                 int choice = scanner.nextInt();
@@ -211,7 +254,11 @@ class CarRentalSystem {
                     viewCustomerRentalHistory(customerId);
                 } else if (choice == 5) { // New option handling for admin
                     viewAllRentals();
-                } else if (choice == 6) {
+                } else if (choice == 6) { // New option handling for adding a car
+                    addNewCar();
+                } else if (choice == 7) { // New option handling for showing all cars
+                    showAllCars();
+                } else if (choice == 8) {
                     break;
                 } else {
                     System.out.println("Invalid choice. Please enter a valid option.");
