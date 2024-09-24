@@ -90,6 +90,23 @@ class CarRentalSystem {
         System.out.println("Customer not found.");
     }
 
+
+
+    public void viewAllRentals() {
+        System.out.println("\n== All Rentals ==\n");
+        if (rentals.isEmpty()) {
+            System.out.println("No rentals available.");
+            return;
+        }
+        
+        for (Rental rental : rentals) {
+            System.out.println("Customer ID: " + rental.getCustomer().getCustomerId() +
+                               ", Customer Name: " + rental.getCustomer().getName() +
+                               ", Car: " + rental.getCar().getBrand() + " " + rental.getCar().getModel() +
+                               ", Rental Days: " + rental.getDays());
+        }
+    }
+
     
 
 
@@ -101,8 +118,9 @@ class CarRentalSystem {
                 System.out.println("1. Rent a Car");
                 System.out.println("2. Return a Car");
                 System.out.println("3. Update Customer Name");
-                System.out.println("4. View Rental History"); // New option
-                System.out.println("5. Exit");
+                System.out.println("4. View Rental History");
+                System.out.println("5. View All Rentals"); // New option for admin
+                System.out.println("6. Exit");
                 System.out.print("Enter your choice: ");
 
                 int choice = scanner.nextInt();
@@ -191,7 +209,9 @@ class CarRentalSystem {
                     System.out.print("Enter your Customer ID: ");
                     String customerId = scanner.nextLine();
                     viewCustomerRentalHistory(customerId);
-                } else if (choice == 5) {
+                } else if (choice == 5) { // New option handling for admin
+                    viewAllRentals();
+                } else if (choice == 6) {
                     break;
                 } else {
                     System.out.println("Invalid choice. Please enter a valid option.");
