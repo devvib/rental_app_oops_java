@@ -12,6 +12,7 @@ class Car {
         this.basePricePerDay = basePricePerDay;
         this.isAvailable = true;
     }
+
     public String getCarId() {
         return carId;
     }
@@ -38,5 +39,9 @@ class Car {
 
     public void returnCar() {
         isAvailable = true;
+    }
+
+    public double getBasePricePerDay() {
+        return basePricePerDay;
     }
 }
