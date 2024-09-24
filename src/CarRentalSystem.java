@@ -62,13 +62,27 @@ class CarRentalSystem {
         }
     }
 
+    public void updateCustomerName(String customerId, String newName) {
+        for (Customer customer : customers) {
+            if (customer.getCustomerId().equals(customerId)) {
+                customer.updateName(newName);
+                System.out.println("Customer name updated successfully.");
+                return;
+            }
+        }
+        System.out.println("Customer not found.");
+    }
+
+
+
     public void menu() {
         try (Scanner scanner = new Scanner(System.in)) {
             while (true) {
                 System.out.println("===== Car Rental System =====");
                 System.out.println("1. Rent a Car");
                 System.out.println("2. Return a Car");
-                System.out.println("3. Exit");
+                System.out.println("3. Update Customer Name"); // Updated option
+                System.out.println("4. Exit");
                 System.out.print("Enter your choice: ");
 
                 int choice = scanner.nextInt();
@@ -144,7 +158,15 @@ class CarRentalSystem {
                     } else {
                         System.out.println("Invalid car ID or car is not rented.");
                     }
-                } else if (choice == 3) {
+                } else if (choice == 3) { // Updated option handling
+                    System.out.println("\n== Update Customer Name ==\n");
+                    System.out.print("Enter your Customer ID: ");
+                    String customerId = scanner.nextLine();
+                    System.out.print("Enter new name: ");
+                    String newName = scanner.nextLine();
+
+                    updateCustomerName(customerId, newName);
+                }else if (choice == 4) {
                     break;
                 } else {
                     System.out.println("Invalid choice. Please enter a valid option.");

@@ -1,4 +1,4 @@
-class Customer {
+public class Customer {
     private String customerId;
     private String name;
 
@@ -13,5 +13,9 @@ class Customer {
 
     public String getName() {
         return name;
+    }
+
+    public void updateName(String newName) { // Updated method for changing the name only
+        this.name = newName;
     }
 }
