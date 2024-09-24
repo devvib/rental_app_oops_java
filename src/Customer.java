@@ -1,10 +1,15 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Customer {
     private String customerId;
     private String name;
+    private List<Rental> rentalHistory; // New field
 
     public Customer(String customerId, String name) {
         this.customerId = customerId;
         this.name = name;
+        this.rentalHistory = new ArrayList<>(); // Initialize rental history
     }
 
     public String getCustomerId() {
@@ -15,7 +20,15 @@ public class Customer {
         return name;
     }
 
-    public void updateName(String newName) { // Updated method for changing the name only
+    public List<Rental> getRentalHistory() {
+        return rentalHistory; // Getter for rental history
+    }
+
+    public void addToRentalHistory(Rental rental) { // New method to add to rental history
+        rentalHistory.add(rental);
+    }
+
+    public void updateName(String newName) {
         this.name = newName;
     }
 }

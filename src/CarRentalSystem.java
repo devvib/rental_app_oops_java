@@ -26,10 +26,27 @@ class CarRentalSystem {
     public void rentCar(Car car, Customer customer, int days) {
         if (car.isAvailable()) {
             car.rent();
-            rentals.add(new Rental(car, customer, days));
+            Rental rental = new Rental(car, customer, days);
+            rentals.add(rental);
+            customer.addToRentalHistory(rental); // Add rental to customer's history
+
         } else {
             System.out.println("Car is not available for rent.");
         }
+    }
+
+    public void viewCustomerRentalHistory(String customerId) {
+        for (Customer customer : customers) {
+            if (customer.getCustomerId().equals(customerId)) {
+                System.out.println("Rental History for " + customer.getName() + ":");
+                for (Rental rental : customer.getRentalHistory()) {
+                    System.out.println("Car: " + rental.getCar().getBrand() + " " + rental.getCar().getModel() + 
+                                       ", Days: " + rental.getDays());
+                }
+                return;
+            }
+        }
+        System.out.println("Customer not found.");
     }
 
     public void returnCar(Car car) {
@@ -73,6 +90,8 @@ class CarRentalSystem {
         System.out.println("Customer not found.");
     }
 
+    
+
 
 
     public void menu() {
@@ -81,8 +100,9 @@ class CarRentalSystem {
                 System.out.println("===== Car Rental System =====");
                 System.out.println("1. Rent a Car");
                 System.out.println("2. Return a Car");
-                System.out.println("3. Update Customer Name"); // Updated option
-                System.out.println("4. Exit");
+                System.out.println("3. Update Customer Name");
+                System.out.println("4. View Rental History"); // New option
+                System.out.println("5. Exit");
                 System.out.print("Enter your choice: ");
 
                 int choice = scanner.nextInt();
@@ -166,7 +186,12 @@ class CarRentalSystem {
                     String newName = scanner.nextLine();
 
                     updateCustomerName(customerId, newName);
-                }else if (choice == 4) {
+                }else if (choice == 4) { // New option handling
+                    System.out.println("\n== View Rental History ==\n");
+                    System.out.print("Enter your Customer ID: ");
+                    String customerId = scanner.nextLine();
+                    viewCustomerRentalHistory(customerId);
+                } else if (choice == 5) {
                     break;
                 } else {
                     System.out.println("Invalid choice. Please enter a valid option.");
