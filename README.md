@@ -1,4 +1,4 @@
-# Car Rental System
+# Car Rental System (Admin Panel)
 
 ## Overview
 A simple console-based car rental system implemented in Java. This project allows users to rent cars, return them, and manage customer details and rental histories.
