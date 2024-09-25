@@ -8,6 +8,7 @@ A simple console-based car rental system implemented in Java. This project allow
 - **Show All Cars**: View a list of all available cars for rent.
 - **Rent a Car**: Customers can rent cars for a specified number of days.
 - **Return a Car**: Customers can return rented cars, with penalties for late returns.
+- **Late Return Penalty**: Automatically calculates penalties for overdue returns (based on 10% of the base price per day late).
 - **Update Customer Details**: Customers can update their names.
 - **View Rental History**: Customers can view their rental history.
 - **View All Rentals**: Admin can see all active and past rentals, including car and customer details.
